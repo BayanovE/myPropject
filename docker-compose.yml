@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  backend:
+    image: myproject/backend
+    volumes:
+      - ./source/backend:/var/www/backend
+      - ./config/backend/docker-entrypoint.sh:/docker-entrypoint.sh
+    depends_on:
+      - postgis
+    env_file:
+      - ./config/backend/.env
+    ports:
+      - 4021:3000
+    restart: always
+  
+  frontend:
+    image: myproject/frontend
+    volumes:
+      - ./source/frontend:/var/www/frontend
+      - ./config/frontend/docker-entrypoint.sh:/docker-entrypoint.sh
+    env_file:
+      - ./config/frontend/.env
+    ports:
+      - 4022:3000
+    restart: always
+  
+  postgis:
+    image: mdillon/postgis:10
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./db/dumps:/dumps
+      - ./db/99-create-db.sh:/docker-entrypoint-initdb.d/99-create-db.sh
+    environment:
+      - POSTGRES_PASSWORD=rootroot
+    restart: always
+  
+volumes:
+  db_data:
