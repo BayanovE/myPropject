@@ -40,6 +40,10 @@ class CompetitorsList extends Component{
         ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
     };
 
+    componentDidMount(){
+        
+    }
+
     render() {
         return(
             <MaterialTable 

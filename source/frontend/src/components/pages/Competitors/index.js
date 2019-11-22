@@ -2,12 +2,15 @@ import React from "react";
 
 import List from "./component";
 import DefaultTemplate from "../../templates/DefaultTemplate";
+import CompetitorsLoader from "../../loaders/CompetitorsLoader";
 
 function Competitors(props) {
     return(
         
-        <DefaultTemplate> 
-            <List />
+        <DefaultTemplate>
+            <CompetitorsLoader>
+                <List />
+            </CompetitorsLoader>
         </DefaultTemplate>
     );
 }

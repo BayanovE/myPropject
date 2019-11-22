@@ -57,7 +57,7 @@ export default connect([
     resource: 'user',
     method: 'get', // You can omit this, this is the default
     request: {
-      url: urljoin(config.backendUrl, '/users'),
+      url: urljoin(config.backendUrl, '/api/competitors'),
     },
   },
 ])(HallOfFame)
