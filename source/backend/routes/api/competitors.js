@@ -1,9 +1,9 @@
 var express = require('express');
-var UsersController = require('../../controllers/users');
+var CompetitorsController = require('../../controllers/competitors');
 
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', UsersController.index);
+/* GET ompetitors listing. */
+router.get('/', CompetitorsController.index);
 
 module.exports = router;

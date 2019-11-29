@@ -15,7 +15,7 @@ import { history, store } from './store'
 import SignIn from "./components/pages/SignIn"
 import SignUp from "./components/pages/SignUp"
 import PokemonList from './components/pages/SignUp/test'
-import CompetitorsList from './components/pages/Competitors'
+import CompetitorsList from './pages/Competitors'
 
 ReactDOM.render(
   <Provider store={store}>

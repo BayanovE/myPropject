@@ -1,6 +1,8 @@
 const dotenv = require('dotenv')
 const parseDbUrl = require('parse-database-url')
+const Sequelize = require('sequelize')
 dotenv.config()
+const Op = Sequelize.Op;
 
 const env = process.env
 
@@ -29,7 +31,8 @@ module.exports = {
     dialect: 'postgres',
     pool: {
       max: 25
-    }
+    },
+    operatorsAliases: { $and: Op.and } 
   },
   test: {
     username: pgUser,
@@ -40,7 +43,8 @@ module.exports = {
     logging: false,
     pool: {
       max: 25
-    }
+    },
+    operatorsAliases: { $and: Op.and } 
   },
   production: {
     username: pgUser,
@@ -51,7 +55,8 @@ module.exports = {
     logging: false,
     pool: {
       max: 25
-    }
+    },
+    operatorsAliases: { $and: Op.and } 
   },
   staging: {
     username: pgUser,
@@ -62,6 +67,7 @@ module.exports = {
     logging: false,
     pool: {
       max: 25
-    }
+    },
+    operatorsAliases: { $and: Op.and } 
   }
 }

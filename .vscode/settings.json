@@ -1,0 +1,12 @@
+{
+    "database.connections": [
+        {
+            "type": "postgres",
+            "name": "postgres@172.22.0.4 (Postgre SQL)",
+            "host": "172.22.0.4:5432",
+            "username": "postgres",
+            "database": "myproject",
+            "password": "rootroot"
+        }
+    ]
+}

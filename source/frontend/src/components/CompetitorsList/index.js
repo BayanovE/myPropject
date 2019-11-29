@@ -1,5 +1,6 @@
 import React, {Component, forwardRef} from 'react'
 import MaterialTable from "material-table";
+import PropTypes from "prop-types"
 
 import {
     AddBox,
@@ -40,28 +41,44 @@ class CompetitorsList extends Component{
         ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
     };
 
+    componentDidMount(){
+        
+    }
+
     render() {
         return(
             <MaterialTable 
                 icons={this.tableIcons}
                 columns={[
-                    { title: "Adı", field: "name" },
-                    { title: "Soyadı", field: "surname" },
-                    { title: "Doğum Yılı", field: "birthYear", type: "numeric" },
+                    { title: "Фамилия", field: "surname" },
+                    { title: "Имя", field: "name" },
+                    { title: "Отчество", field: "secondName", },
+                    { 
+                        title: "Клуб", 
+                        field: "club",
+                        lookup: {...['УКРФ', 'Золотой Сокол', 'Ночная стража', 'NoName', 'nramazzone', 'MwS', 'Rumata Fencing', 'HEMA Academy']},
+                    },
+                    { title: "Номинации", field: "nomination" },
                     {
-                    title: "Doğum Yeri",
-                    field: "birthCity",
-                    lookup: { 34: "İstanbul", 63: "Şanlıurfa" }
+                        title: "Город",
+                        field: "city",
+                        lookup: { 66: "Екатеринбург", 45: "Челябинск" }
                     }
                 ]}
-                data={[
-                    { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 }
-                ]}
-              title="Demo Title"
+                data={this.props.data}
+              title="Участники"
             />
         );
     }
 
 }
+
+CompetitorsList.defaultProps = {
+    data: [],
+};
+
+CompetitorsList.propTypes = {
+    data: PropTypes.array,
+};
 
 export default CompetitorsList; 
