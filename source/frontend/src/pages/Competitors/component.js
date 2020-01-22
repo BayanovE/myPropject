@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 import List from "./../../components/CompetitorsList"
 
-const Component = ({competitors, dispatch, value, increment, decrement, incrementAsync, sendHttp}) => {
+const Component = ({competitors}) => {
     return (
         <React.Fragment>
             <List data={competitors} />
@@ -20,7 +20,8 @@ Component.propTypes = {
 };
 
 const mapStateToProps = store => {
-    return {value: store.value}
+
+    return {competitors: store.api['COMPETITORS_HTTP_REQUEST'].data}
 }
 
 

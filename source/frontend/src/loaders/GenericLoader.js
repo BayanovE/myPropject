@@ -63,9 +63,9 @@ class GenericLoader extends Component {
             storeData.status === 'loading')
             return;
 
-        this.props.InitHttpRequst(
-            getRequestActionName('init', resource),
+        this.props.InitHttpRequst('INIT_HTTP_REQUEST',
             {
+                resource,
                 method,
                 request,
             }

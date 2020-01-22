@@ -12,9 +12,8 @@ function Competitors(props) {
             <CompetitorsLoader>
                 <Component />
             </CompetitorsLoader>
-            
             <CitiesLoader>
-
+                <span>Opa</span>
             </CitiesLoader>
         </DefaultTemplate>
     );

@@ -1,21 +1,26 @@
-export default function api(state = {}, {type, payload}) {
+export default function api(state = {}, {type, payload}) { // Это говно надо переписать как-то по нормальному
     let newState;
+    const baseName = payload && payload.resource && `${payload.resource.toUpperCase()}_HTTP_REQUEST`;
 
-    switch (true) {
+    switch (type) {
         
-        case(/^([A-Z,_]+HTTP_REQUEST_START$)/.test(type)):      //start
-
+        case(`${baseName}_START`):      //start
             newState = {...state};
-            newState[type.match(/^([A-Z,_]+HTTP_REQUEST)/)[0]] = {
-                status: 'loading',
-                errorMessage: undefined,
-            }
+            newState[baseName] = !newState[baseName] ? {
+                    status: 'loading',
+                    errorMessage: undefined,
+                    data: []
+                }: {
+                    status: 'loading',
+                    errorMessage: undefined,
+                }
+            
             return newState;
 
-        case(/^([A-Z,_]+HTTP_REQUEST_SUCCESS$)/.test(type)):    //success
+        case(`${baseName}_SUCCESS`):    //success
         
             newState = {...state};
-            newState[type.match(/^([A-Z,_]+HTTP_REQUEST)/)[0]] = {
+            newState[baseName] = {
                 status: 'success',
                 errorMessage: undefined,
                 data: payload.data,
@@ -23,13 +28,13 @@ export default function api(state = {}, {type, payload}) {
             }
             return newState;
 
-        case(/^([A-Z,_]+HTTP_REQUEST_ERROR$)/.test(type)):      //error
+        case(`${baseName}_ERROR`):      //error
 
             newState = {...state};
-            newState[type.match(/^([A-Z,_]+HTTP_REQUEST)/)[0]] = {
+            newState[baseName] = {
                 status: 'error',
                 errorMessage: undefined,
-                error: payload.error,
+                error: payload.error, //TODO: add timestamp maybe
             }
             return newState;
         default:
