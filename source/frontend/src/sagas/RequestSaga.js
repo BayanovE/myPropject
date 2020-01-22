@@ -1,25 +1,34 @@
-import { put, takeEvery, all } from 'redux-saga/effects'
+import { put, call } from 'redux-saga/effects'
 
-const delay = (ms) => new Promise(res => setTimeout(res, ms))
+import Api from "../domain/Api"
 
-function* helloSaga() {
-  console.log('Hello Sagas!')
-}
+export default function* httpRequest(action) {
+  
+  const baseName = action.type.match(/^([A-Z,_]+HTTP_REQUEST)/)[0];
+  //debugger;
+  try {
 
-export function* incrementAsync() {
-  yield delay(1000)
-  yield put({ type: 'INCREMENT' })
-}
+    yield put({ type: `${baseName}_START`});
+    const response = yield call(Api.httpRequest, action.payload);
 
-export function* watchIncrementAsync() {
-  yield takeEvery('INCREMENT_ASYNC', incrementAsync)
-}
+    if (response.status >= 200 && response.status < 300) {
+      const data = yield response.json();
 
-// обратите внимание, как мы экспортируем rootSaga
-// единая точка входа для запуска всех Саг одновременно
-export default function* rootSaga() {
-  yield all([
-    helloSaga(),
-    watchIncrementAsync()
-  ])
+      yield put({ 
+        type: `${baseName}_SUCCESS`, 
+        payload:{data} 
+      });
+
+    } else {
+      throw response;
+    }
+
+  } catch (error) {
+
+    yield put({ 
+      type: `${baseName}_FAILED`, 
+      payload: {error} 
+    });
+
+  }
 }
