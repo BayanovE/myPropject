@@ -9,8 +9,29 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import { Link } from 'react-router-dom';
 
-export const mainListItems = (
+import routes from '../../../routes/index'
+
+const items = [
+    {text: "Главная", route: routes.main, icon: <DashboardIcon />},
+    {text: "Список Участников", route: routes.competitors, icon: <PeopleIcon />},
+];
+
+export const MainListItems = () => {
+
+    return items.map( ({text, route, icon}) => (
+        <ListItem button component={Link} to={route} key={`menu-item-${text}`}>
+            <ListItemIcon>
+                {icon && icon}
+            </ListItemIcon>
+            <ListItemText primary={text} />
+        </ListItem>
+    ))
+    
+}
+        
+export const mainListItems2 = (
   <div>
     <ListItem button>
       <ListItemIcon>

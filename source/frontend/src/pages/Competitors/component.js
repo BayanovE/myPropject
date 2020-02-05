@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
 import List from "./../../components/CompetitorsList"
+import {getCompetitors } from '../../domain/selectors'
 
 const Component = ({competitors}) => {
     return (
@@ -21,7 +22,7 @@ Component.propTypes = {
 
 const mapStateToProps = store => {
 
-    return {competitors: store.api['COMPETITORS_HTTP_REQUEST'].data}
+    return {competitors: getCompetitors(store)}
 }
 
 

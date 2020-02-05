@@ -6,7 +6,7 @@ export default function api(state = {}, {type, payload}) { // Это говно 
         
         case(`${baseName}_START`):      //start
             newState = {...state};
-            newState[baseName] = !newState[baseName] ? {
+            newState[payload.resource] = !newState[payload.resource] ? {
                     status: 'loading',
                     errorMessage: undefined,
                     data: []
@@ -20,7 +20,7 @@ export default function api(state = {}, {type, payload}) { // Это говно 
         case(`${baseName}_SUCCESS`):    //success
         
             newState = {...state};
-            newState[baseName] = {
+            newState[payload.resource] = {
                 status: 'success',
                 errorMessage: undefined,
                 data: payload.data,
@@ -28,10 +28,10 @@ export default function api(state = {}, {type, payload}) { // Это говно 
             }
             return newState;
 
-        case(`${baseName}_ERROR`):      //error
+        case(`${baseName}_FAILED`):      //error
 
             newState = {...state};
-            newState[baseName] = {
+            newState[payload.resource] = {
                 status: 'error',
                 errorMessage: undefined,
                 error: payload.error, //TODO: add timestamp maybe

@@ -27,7 +27,7 @@ export function* newHttpRequest (activeRequests, action) {
 
         if (response.status >= 200 && response.status < 300) {
             const data = yield response.json();
-
+         
             activeRequests[baseName] = false;
             yield put({
                 type: `${baseName}_SUCCESS`,

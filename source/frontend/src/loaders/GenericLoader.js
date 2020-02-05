@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import {connect} from 'react-redux'
 import PropTypes from "prop-types"
 
+
+import LoadingIndicator from './LoadingIndicator'
 /*
  *  config = {
  *      resource: 'строка для названия action'a'
@@ -19,6 +21,7 @@ import PropTypes from "prop-types"
  *          redirect:  manual, *follow, error
  *          referrer:  no-referrer, *client
  *          body: JSON.stringify(data), // тип данных в body должен соответвовать значению заголовка "Content-Type"
+ *          isSiteApi = true // автоматом докидывает адрес апи сайта
  *      }
  *  }
 */
@@ -40,7 +43,7 @@ function getRequestActionName(type = '', resource = '') { //TODO: стоит в�
         case 'failed':
             return `${baseName}_FAILED`;
         case 'getStoreStatus':
-            return baseName;
+            return resource;
         default:
             return '';
     }
@@ -76,32 +79,25 @@ class GenericLoader extends Component {
     //TODO: Вынести закгрузчиики в отдельные компоненты
 
     renderLoader = () => {
-        return(
-            <div className="loading-banner">
-                Гружу. Со всех ног.
-            </div>
-        )
+
+        return <LoadingIndicator />;
+        // return(
+        //     <div className="loading-banner">
+        //         Гружу. Со всех ног.
+        //     </div>
+        // )
     }
 
     renderError = (errorData) => {
         return(
             <div className="error-banner">
-                Упс, ошибочка вышла.
+                Упс, ошибочка закгрузки вышла.
             </div>
         )
     }
 
-    renderContent = () => { //TODO: почследовательная передача результатов
-        const {storeData, children, resource} = this.props;
-
-        const args = {};
-        args[resource] = storeData.data;
-
-        const childrenWithProps = React.Children.map(children, child =>
-            React.cloneElement(child, args)
-        );
-
-        return(<div>{childrenWithProps}</div>); 
+    renderContent = () => { 
+        return this.props.children;
     }
 
     render() {

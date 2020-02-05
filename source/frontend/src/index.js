@@ -5,32 +5,29 @@ import { Route, Switch } from 'react-router'
 import { ConnectedRouter } from 'connected-react-router'
 import 'typeface-roboto';
 
-
-import Intro from './components/pages/Intro/Intro'
-import Game from './components/pages/Game/Game'
-import HallOfFame from './components/pages/HallOfFame/HallOfFame'
 import './index.css'
 import * as serviceWorker from './serviceWorker'
 import { history, store } from './store'
-import SignIn from "./components/pages/SignIn"
-import SignUp from "./components/pages/SignUp"
-import PokemonList from './components/pages/SignUp/test'
+
+import routes from './routes/index';
+import Main from './pages/Main'
 import CompetitorsList from './pages/Competitors'
+import Page404 from './pages/Page404'
+import SignIn from './pages/Signin'
+import SignUp from './pages/Signup'
+
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <>
         <Switch>
-          <Route exact path="/" render={() => (<Intro />)} />
-          <Route exact path="/game" render={() => <Game />} />
-          <Route exact path="/fame" render={() => <HallOfFame />} />
-          <Route exact path="/signin" render={() => <SignIn />} />
-          <Route exact path="/signup" render={() => <SignUp />} />
-          <Route exact path="/poke" render={() => <PokemonList />} />
-          <Route exact path="/competitors" render={() => <CompetitorsList />} />
+          <Route exact path={routes.main} render={() => (<Main />)} />
+          <Route exact path={routes.competitors} render={() => <CompetitorsList />} />
+          <Route exact path={routes.signin} render={() => <SignIn />} />
+          <Route exact path={routes.signup} render={() => <SignUp />} />
 
-          <Route render={() => (<div>{"Do something with it! It's not supposed to be an Easter Egg!"}</div>)} />
+          <Route render={() => <Page404 />} />
         </Switch>
       </>
     </ConnectedRouter>

@@ -3,7 +3,7 @@ import React from 'react'
 import GenericLoader from './GenericLoader';
 
 
-const CompetitorsLoader = (props) => {
+const CitiesLoader = (props) => {
 
     return(
         <GenericLoader 
@@ -16,4 +16,4 @@ const CompetitorsLoader = (props) => {
     );
 }
 
-export default CompetitorsLoader;
+export default CitiesLoader;

@@ -15,12 +15,14 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
+import { MainListItems, secondaryListItems } from './listItems';
 /* import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders'; */
 
 import useStyles from "./indexCss";
+
+import {getRouteTitle} from '../../../routes/index'
 
 function Copyright() {
   return (
@@ -35,8 +37,6 @@ function Copyright() {
   );
 }
 
-
-
 export default function Dashboard(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -47,6 +47,8 @@ export default function Dashboard(props) {
     setOpen(false);
   };
  // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+ const title = getRouteTitle(); //TODO: Надо придумать каким макаром вытягивать тайтл
 
   return (
     <div className={classes.root}>
@@ -86,7 +88,9 @@ export default function Dashboard(props) {
                 </IconButton>
             </div>
             <Divider />
-            <List>{mainListItems}</List>
+            <List>
+                <MainListItems/>
+            </List>
             <Divider />
             <List>{secondaryListItems}</List>
         </Drawer>
@@ -103,26 +107,3 @@ export default function Dashboard(props) {
     </div>
   );
 }
-
-/* import React, {Component, Fragment} from 'react'
-import { Container } from "@material-ui/core";
-
-import DefaultHeader from '../DefaultHeader';
-
-class DefaultTemplate extends Component {
-    render() {
-        const {children} = this.props;
-
-        return(
-            <Fragment>
-                <DefaultHeader />
-
-                <Container fixed>
-                    {children}
-                </Container>
-            </Fragment>
-        );
-    }
-}
-
-export default DefaultTemplate; */
