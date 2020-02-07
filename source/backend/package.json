@@ -10,18 +10,26 @@
     "create-migration": "./node_modules/.bin/sequelize migration:create"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "connect-pg-simple": "^6.1.0",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^6.2.0",
     "express": "~4.16.0",
+    "express-session": "^1.17.0",
     "helmet": "^3.21.2",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
     "morgan": "~1.9.0",
+    "n": "^6.2.0",
     "parse-database-url": "^0.3.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "pg": "^7.7.1",
-    "sequelize": "^4.42.0"
+    "sequelize": "^4.42.0",
+    "stable": "^0.1.8"
   },
   "devDependencies": {
     "sequelize-cli": "^5.4.0"

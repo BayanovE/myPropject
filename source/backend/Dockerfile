@@ -9,6 +9,6 @@ RUN apt-get update &&\
 RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 RUN echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.profile
 RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"' >> ~/.profile
-RUN bash -c "source ~/.profile && nvm install 8.10.0"
+RUN bash -c "source ~/.profile && nvm install 12.15.0"
 
 ENTRYPOINT [ "/docker-entrypoint.sh" ]

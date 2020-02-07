@@ -30,7 +30,9 @@ module.exports = {
     host: pgHost,
     dialect: 'postgres',
     pool: {
-      max: 25
+      max: 25,
+      idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 2000,
     },
     operatorsAliases: { $and: Op.and } 
   },
@@ -42,7 +44,9 @@ module.exports = {
     dialect: 'postgres',
     logging: false,
     pool: {
-      max: 25
+      max: 25,
+      idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 2000,
     },
     operatorsAliases: { $and: Op.and } 
   },
@@ -54,7 +58,9 @@ module.exports = {
     dialect: 'postgres',
     logging: false,
     pool: {
-      max: 25
+      max: 25,
+      idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 2000,
     },
     operatorsAliases: { $and: Op.and } 
   },
@@ -66,7 +72,9 @@ module.exports = {
     dialect: 'postgres',
     logging: false,
     pool: {
-      max: 25
+      max: 25,
+      idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 2000,
     },
     operatorsAliases: { $and: Op.and } 
   }
